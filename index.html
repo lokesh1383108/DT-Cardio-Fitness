@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DT Cardio & Fitness | Premium Unisex Fitness Studio in Bhiwadi</title>
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Welcome to DT Cardio & Fitness. Managed by fitness expert Anjali Raj Chawhan. We offer premium online and offline cardio, weight loss, and weight gain batches for men and women in Bhiwadi. Custom diet charts and individual attention.">
+    <meta name="keywords" content="DT Cardio & Fitness, Fitness Bhiwadi, Cardio classes, weight loss, weight gain, diet plans, female fitness trainer Bhiwadi, Cosmos Greens fitness">
+    <meta name="author" content="Malhotra Tech Solutions">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- Sticky Header & Navigation -->
+    <header class="main-header" id="main-header">
+        <div class="header-container">
+            <a href="#" class="logo" id="logo-link">
+                <span class="logo-accent">DT</span> Cardio & Fitness
+            </a>
+            
+            <!-- Mobile Menu Toggle Button -->
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About Us</a></li>
+                    <li><a href="#facilities" class="nav-link">Facilities</a></li>
+                    <li><a href="#bmi-calculator" class="nav-link">BMI Calculator</a></li>
+                    <li><a href="#schedule" class="nav-link">Timings</a></li>
+                    <li><a href="#testimonials" class="nav-link">Transformations</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-cta">
+                    <a href="https://wa.me/919509700562?text=Hello%20DT%20Cardio%20%26%20Fitness!%20I'm%20interested%20in%20joining%20a%20fitness%20batch." target="_blank" class="btn btn-primary btn-sm">Join Batch</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Client Standalone Feedback Form Section -->
+    <section id="give-feedback" class="feedback-page-section" style="display: none;">
+        <div class="container feedback-form-container">
+            <div class="feedback-card-fullscreen">
+                <a href="#" class="btn-back-home">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    Back to Homepage
+                </a>
+                
+                <div class="text-center">
+                    <span class="section-tag">Client Feedback Portal</span>
+                    <h2>Share Your <span class="text-gradient">Transformation</span></h2>
+                    <p class="section-subtitle">Your story inspires others to start their fitness journey. Tell us about your results!</p>
+                </div>
+
+                <form id="userFeedbackForm" class="feedback-submit-form">
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="fb-name">Your Full Name</label>
+                            <input type="text" id="fb-name" placeholder="e.g., Ritu Kumari" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fb-batch">Your Batch / Location</label>
+                            <input type="text" id="fb-batch" placeholder="e.g., Bhiwadi Offline Batch / Online Client" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label>Star Rating</label>
+                            <div class="star-rating-selector">
+                                <input type="radio" id="star5" name="fb-rating" value="5" checked><label for="star5">★</label>
+                                <input type="radio" id="star4" name="fb-rating" value="4"><label for="star4">★</label>
+                                <input type="radio" id="star3" name="fb-rating" value="3"><label for="star3">★</label>
+                                <input type="radio" id="star2" name="fb-rating" value="2"><label for="star2">★</label>
+                                <input type="radio" id="star1" name="fb-rating" value="1"><label for="star1">★</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fb-result">Transformation Result (Optional)</label>
+                            <input type="text" id="fb-result" placeholder="e.g., Lost 12kg / Muscle Gain +5kg">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fb-text">Your Review / Experience</label>
+                        <textarea id="fb-text" rows="5" placeholder="Share your fitness experience with Coach Anjali and how DT Cardio helped you achieve your goals..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Submit Review</button>
+                    <div id="fbFormFeedback" class="form-feedback"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Wrapper (Hidden during standalone feedback view) -->
+    <div id="main-content-wrapper">
+        <main>
+
+            <!-- Hero Section -->
+            <section id="home" class="hero-section">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <span class="hero-badge">⭐ High-Quality Personal Training</span>
+                        <h1 class="hero-title">DT Cardio & <span class="text-gradient">Fitness</span></h1>
+                        <p class="hero-motto">"If You Think Fitness is Costly, then Try Illness"</p>
+                        <p class="hero-description">
+                            Experience premier fitness coaching under the direct guidance of a certified lady expert. Offering custom tailored batches for both men and women, both offline in Bhiwadi and online worldwide.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="#facilities" class="btn btn-primary">Explore Facilities</a>
+                            <a href="#contact" class="btn btn-outline">Enquire Now</a>
+                        </div>
+                        
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">60+</span>
+                                <span class="stat-label">Happy Transformations</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">2+</span>
+                                <span class="stat-label">Training Modes (Online & Offline)</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Personalized Attention</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image-container">
+                        <div class="hero-image-wrapper" id="heroSlideshow">
+                            <!-- Slides injected dynamically via JS -->
+                        </div>
+                        <div class="glass-tag tag-top">Separate Batches for Men & Women</div>
+                        <div class="glass-tag tag-bottom">Diet Charts Included</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About & Lady Leadership Section -->
+            <section id="about" class="about-section">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <span class="section-tag">About DT Cardio</span>
+                        <h2>Meet Your Expert <span class="text-gradient">Coach</span></h2>
+                        <p class="section-subtitle">Dedicated to empowering women and men with healthy, active lifestyles.</p>
+                    </div>
+
+                    <div class="about-grid">
+                        <div class="about-image-column">
+                            <div class="about-image-wrapper">
+                                <img src="images/owner_trainer.png" alt="Anjali Raj Chawhan - Founder & Coach" class="about-img">
+                                <div class="owner-badge">
+                                    <h3>Anjali Raj Chawhan</h3>
+                                    <p>Founder & Chief Head Coach</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-text-column">
+                            <h3 class="about-lead">Empowering Bhiwadi with Fitness & Strength</h3>
+                            <p>
+                                At DT Cardio & Fitness, we believe that fitness is a journey, not a destination. Managed and coached directly by <strong>Anjali Raj Chawhan</strong>, we design workouts that are safe, effective, and tailored specifically to your physiology and goals.
+                            </p>
+                            <p>
+                                Whether you are a beginner taking your first step toward health or a fitness enthusiast striving for your next milestone, we provide individual attention and expert guidance.
+                            </p>
+                            
+                            <div class="features-list">
+                                <div class="feature-bullet">
+                                    <div class="bullet-icon">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </div>
+                                    <div class="bullet-text">
+                                        <h4>Separate Batches for Male & Female</h4>
+                                        <p>Safe, comfortable, and specialized training environments for everyone.</p>
+                                    </div>
+                                </div>
+                                <div class="feature-bullet">
+                                    <div class="bullet-icon">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </div>
+                                    <div class="bullet-text">
+                                        <h4>Personalized Nutrition & Diet Charts</h4>
+                                        <p>Free custom diet charts designed to nourish your body and accelerate results.</p>
+                                    </div>
+                                </div>
+                                <div class="feature-bullet">
+                                    <div class="bullet-icon">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </div>
+                                    <div class="bullet-text">
+                                        <h4>Online & Offline Dual Platform</h4>
+                                        <p>Join us in person at our studio in Bhiwadi, or work out from the comfort of your home.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Facilities Section -->
+            <section id="facilities" class="facilities-section">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <span class="section-tag">Our Facilities</span>
+                        <h2>Tailored Programs for <span class="text-gradient">Every Goal</span></h2>
+                        <p class="section-subtitle">We offer scientific, result-oriented programs to help you transform sustainably.</p>
+                    </div>
+
+                    <div class="services-grid">
+                        <!-- Service 1: Weight Loss -->
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            </div>
+                            <h3>Weight Loss Programs</h3>
+                            <p class="service-desc">Achieve a healthy calorie deficit by burning more calories than you consume. We prioritize nutritious eating habits, portion management, and intense calorie-burning exercises.</p>
+                            <span class="service-badge-item">Guaranteed Weight Loss</span>
+                        </div>
+
+                        <!-- Service 2: Weight Gain -->
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"></path></svg>
+                            </div>
+                            <h3>Weight Gain & Muscle Building</h3>
+                            <p class="service-desc">Build lean muscle mass and gain weight healthily. We combine targeted strength training to stimulate muscle fiber growth with protein-rich nutritional strategies.</p>
+                            <span class="service-badge-item">Strength Training</span>
+                        </div>
+
+                        <!-- Service 3: Body Toning -->
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>
+                            </div>
+                            <h3>Body Toning & Sculpting</h3>
+                            <p class="service-desc">Improve muscle definition and drop overall body fat percentage. Our toning batches focus on high-repetition body weight movements, resistance bands, and high-intensity cardio.</p>
+                            <span class="service-badge-item">Definition & Shape</span>
+                        </div>
+
+                        <!-- Service 4: Cardio Fitness -->
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                            </div>
+                            <h3>Cardio Fitness Classes</h3>
+                            <p class="service-desc">Enhance your cardiovascular endurance. Train your heart, lungs, and blood vessels to deliver oxygen efficiently during prolonged physical activity for high stamina.</p>
+                            <span class="service-badge-item">Stamina & Vitality</span>
+                        </div>
+
+                        <!-- Service 5: Diet Plans -->
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path></svg>
+                            </div>
+                            <h3>Custom Diet Plans</h3>
+                            <p class="service-desc">Receive balanced, nourishing diet plans custom-designed for your body type. We construct sustainable diet plans emphasizing portion control, macronutrient ratios, and proper hydration.</p>
+                            <span class="service-badge-item">Nutritional Guidance</span>
+                        </div>
+
+                        <!-- Service 6: Online Cardio Classes -->
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                            </div>
+                            <h3>Online Cardio Batches</h3>
+                            <p class="service-desc">Perfect for busy professionals or those traveling. Experience high-energy live virtual group sessions from anywhere, needing zero equipment to start shedding calories.</p>
+                            <span class="service-badge-item">Train from Anywhere</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive BMI Calculator Section -->
+            <section id="bmi-calculator" class="bmi-section">
+                <div class="container">
+                    <div class="bmi-grid">
+                        <div class="bmi-content-column">
+                            <span class="section-tag">Interactive Tools</span>
+                            <h2>Calculate Your <span class="text-gradient">BMI</span></h2>
+                            <p>
+                                Body Mass Index (BMI) is a reliable indicator of body fatness for most people. It is used as a screening tool to identify whether an adult is at a healthy weight. 
+                            </p>
+                            <p>
+                                Calculate your score below and discover the recommended path for your fitness journey!
+                            </p>
+                            
+                            <div class="bmi-chart-table">
+                                <div class="bmi-chart-row header">
+                                    <span>BMI Range</span>
+                                    <span>Classification</span>
+                                </div>
+                                <div class="bmi-chart-row thin">
+                                    <span>Below 18.5</span>
+                                    <span>Underweight</span>
+                                </div>
+                                <div class="bmi-chart-row normal">
+                                    <span>18.5 – 24.9</span>
+                                    <span>Normal Weight</span>
+                                </div>
+                                <div class="bmi-chart-row overweight">
+                                    <span>25.0 – 29.9</span>
+                                    <span>Overweight</span>
+                                </div>
+                                <div class="bmi-chart-row obese">
+                                    <span>30.0 and above</span>
+                                    <span>Obese</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bmi-form-column">
+                            <div class="bmi-card">
+                                <h3>BMI Calculator</h3>
+                                <form id="bmiForm">
+                                    <div class="form-group-row">
+                                        <div class="form-group">
+                                            <label for="bmi-weight">Weight (kg)</label>
+                                            <input type="number" id="bmi-weight" placeholder="e.g., 70" min="20" max="250" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="bmi-height">Height (cm)</label>
+                                            <input type="number" id="bmi-height" placeholder="e.g., 170" min="100" max="250" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label>Gender Batch Type</label>
+                                        <div class="gender-radio-group">
+                                            <label class="radio-label">
+                                                <input type="radio" name="bmi-gender" value="Female" checked>
+                                                <span>Female Batch</span>
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="bmi-gender" value="Male">
+                                                <span>Male Batch</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary btn-block">Calculate BMI</button>
+                                </form>
+                                
+                                <!-- BMI Results Display -->
+                                <div class="bmi-result-display" id="bmiResult">
+                                    <div class="result-divider"></div>
+                                    <h4>Your Result</h4>
+                                    <div class="result-score" id="bmiScore">0.0</div>
+                                    <div class="result-status" id="bmiStatus">Enter your details above</div>
+                                    <p class="result-suggestion" id="bmiSuggestion"></p>
+                                    <a href="#contact" class="btn btn-outline btn-sm" id="bmiCTA">Book Free Consultation</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Timings & Schedule Section -->
+            <section id="schedule" class="schedule-section">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <span class="section-tag">Weekly Timings</span>
+                        <h2>Choose Your <span class="text-gradient">Batch</span></h2>
+                        <p class="section-subtitle">Comfortable timings with dedicated separate slots for males and females.</p>
+                    </div>
+
+                    <div class="schedule-grid">
+                        <!-- Female Batches -->
+                        <div class="schedule-card female-schedule">
+                            <div class="schedule-header">
+                                <span class="gender-icon">💃</span>
+                                <h3>Female Batches</h3>
+                                <p>Exclusive safe slots for ladies</p>
+                            </div>
+                            <div class="schedule-body">
+                                <div class="schedule-item">
+                                    <div class="time-col">
+                                        <span class="time-bubble">Morning</span>
+                                        <strong>06:00 AM - 07:00 AM</strong>
+                                    </div>
+                                    <span class="batch-type">Cardio + Toning</span>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="time-col">
+                                        <span class="time-bubble">Morning</span>
+                                        <strong>08:30 AM - 09:30 AM</strong>
+                                    </div>
+                                    <span class="batch-type">Weight Loss Intensive</span>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="time-col">
+                                        <span class="time-bubble">Evening</span>
+                                        <strong>04:30 PM - 05:30 PM</strong>
+                                    </div>
+                                    <span class="batch-type">Aerobics & Cardio</span>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="time-col">
+                                        <span class="time-bubble">Evening</span>
+                                        <strong>06:00 PM - 07:00 PM</strong>
+                                    </div>
+                                    <span class="batch-type">Online Cardio Batch</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Male Batches -->
+                        <div class="schedule-card male-schedule">
+                            <div class="schedule-header">
+                                <span class="gender-icon">🏋️‍♂️</span>
+                                <h3>Male Batches</h3>
+                                <p>Intense strength and cardio slots</p>
+                            </div>
+                            <div class="schedule-body">
+                                <div class="schedule-item">
+                                    <div class="time-col">
+                                        <span class="time-bubble">Morning</span>
+                                        <strong>07:15 AM - 08:15 AM</strong>
+                                    </div>
+                                    <span class="batch-type">HIIT & Conditioning</span>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="time-col">
+                                        <span class="time-bubble">Morning</span>
+                                        <strong>09:45 AM - 10:45 AM</strong>
+                                    </div>
+                                    <span class="batch-type">Strength & Power</span>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="time-col">
+                                        <span class="time-bubble">Evening</span>
+                                        <strong>07:15 PM - 08:15 PM</strong>
+                                    </div>
+                                    <span class="batch-type">Cardio Endurance</span>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="time-col">
+                                        <span class="time-bubble">Evening</span>
+                                        <strong>08:30 PM - 09:30 PM</strong>
+                                    </div>
+                                    <span class="batch-type">Online Cardio Batch</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-notice text-center">
+                        <p>💡 <strong>Note:</strong> Customized timing adjustments are available for online personal training clients. Contact us to schedule a trial batch!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transformations & Testimonials Section -->
+            <section id="testimonials" class="testimonials-section">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <span class="section-tag">Success Stories</span>
+                        <h2>60+ Success <span class="text-gradient">Transformations</span></h2>
+                        <p class="section-subtitle">Real people, real hard work, and verified healthy results in Bhiwadi.</p>
+                        <div style="margin-top: 16px;">
+                            <a href="#give-feedback" class="btn btn-outline btn-sm">Submit Your Review</a>
+                        </div>
+                    </div>
+
+                    <!-- Live Testimonial Carousel -->
+                    <div class="testimonials-container">
+                        <div class="testimonials-slider" id="testimonialsSlider">
+                            <!-- Injected dynamically via JS (includes default & approved admin reviews) -->
+                        </div>
+                        
+                        <!-- Slider Navigation -->
+                        <div class="slider-controls">
+                            <button class="slider-btn prev" id="sliderPrev" aria-label="Previous testimonial">
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                            </button>
+                            <div class="slider-dots" id="sliderDots">
+                                <!-- Injected dynamically -->
+                            </div>
+                            <button class="slider-btn next" id="sliderNext" aria-label="Next testimonial">
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Client Video Highlights Section -->
+                    <div class="video-feedbacks-section" id="videoFeedbacksSection">
+                        <div class="section-header text-center" style="margin-top: 60px; margin-bottom: 40px;">
+                            <span class="section-tag">Video Testimonials</span>
+                            <h3>Transformation <span class="text-gradient">Highlights</span></h3>
+                            <p class="section-subtitle">Watch client workout feedback clips and transformations.</p>
+                        </div>
+                        
+                        <div class="video-grid" id="dynamicVideoGrid">
+                            <!-- Injected dynamically via JS (can add default/custom video embeds) -->
+                        </div>
+                    </div>
+
+                    <!-- Community Gallery Feature -->
+                    <div class="gallery-showcase">
+                        <div class="gallery-text">
+                            <h3>Our Fitness Community</h3>
+                            <p>We build healthy habits together. Join our local batches or interactive online community to start your transformation today.</p>
+                            <a href="https://wa.me/919509700562?text=I%20want%20to%20see%20transformation%20videos" target="_blank" class="btn btn-outline btn-sm">Request Transformation Videos</a>
+                        </div>
+                        <div class="gallery-images-container">
+                            <div class="dynamic-gallery-grid" id="dynamicGalleryGrid">
+                                <!-- Injected dynamically via JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact & Location Section -->
+            <section id="contact" class="contact-section">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <span class="section-tag">Get In Touch</span>
+                        <h2>Start Your Journey <span class="text-gradient">Today</span></h2>
+                        <p class="section-subtitle">Reach out for bookings, trial classes, or personalized nutrition queries.</p>
+                    </div>
+
+                    <div class="contact-grid">
+                        <!-- Contact Info Column -->
+                        <div class="contact-info-column">
+                            <h3>Contact Information</h3>
+                            <p class="contact-intro">Feel free to contact us through any of the channels below. We are excited to guide you.</p>
+                            
+                            <div class="info-blocks">
+                                <!-- Block: Call -->
+                                <a href="tel:+919509700562" class="info-block-item">
+                                    <div class="info-icon">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                    </div>
+                                    <div class="info-text">
+                                        <span>Call Coach Anjali</span>
+                                        <strong>+91 95097 00562</strong>
+                                    </div>
+                                </a>
+
+                                <!-- Block: Email -->
+                                <a href="mailto:anjalirajchawhan9467@gmail.com" class="info-block-item">
+                                    <div class="info-icon">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                    </div>
+                                    <div class="info-text">
+                                        <span>Email Us</span>
+                                        <strong>anjalirajchawhan9467@gmail.com</strong>
+                                    </div>
+                                </a>
+
+                                <!-- Block: Location -->
+                                <div class="info-block-item">
+                                    <div class="info-icon">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                    </div>
+                                    <div class="info-text">
+                                        <span>Our Location</span>
+                                        <strong>DT Cardio & Fitness Classes,<br>COSMOS GREENS, Alwar Bypass Road, Bhiwadi – 301019. Distt. Alwar (Rajasthan)</strong>
+                                    </div>
+                                </div>
+
+                                <!-- Block: Web Portal Link -->
+                                <a href="https://mybhiwadi.com/" target="_blank" class="info-block-item">
+                                    <div class="info-icon">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                                    </div>
+                                    <div class="info-text">
+                                        <span>Listed on Bhiwadi Business Portal</span>
+                                        <strong>Visit: mybhiwadi.com</strong>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Contact Form Column -->
+                        <div class="contact-form-column">
+                            <div class="contact-card">
+                                <h3>Send a Message</h3>
+                                <form id="contactForm">
+                                    <div class="form-group">
+                                        <label for="contact-name">Full Name</label>
+                                        <input type="text" id="contact-name" placeholder="Enter your name" required>
+                                    </div>
+
+                                    <div class="form-group-row">
+                                        <div class="form-group">
+                                            <label for="contact-phone">Phone Number</label>
+                                            <input type="tel" id="contact-phone" placeholder="10-digit number" pattern="[0-9]{10}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contact-mode">Preferred Platform</label>
+                                            <select id="contact-mode" required>
+                                                <option value="Offline Studio (Bhiwadi)">Offline Studio (Bhiwadi)</option>
+                                                <option value="Online Classes">Online Classes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group-row">
+                                        <div class="form-group">
+                                            <label for="contact-gender">Batch Type</label>
+                                            <select id="contact-gender" required>
+                                                <option value="Female Batch">Female Batch</option>
+                                                <option value="Male Batch">Male Batch</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contact-goal">Fitness Goal</label>
+                                            <select id="contact-goal" required>
+                                                <option value="Weight Loss">Weight Loss</option>
+                                                <option value="Weight Gain">Weight Gain</option>
+                                                <option value="Body Toning">Body Toning</option>
+                                                <option value="Cardio Stamina">Cardio Stamina</option>
+                                                <option value="General Health / Trial">General Health / Trial</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="contact-message">Message (Optional)</label>
+                                        <textarea id="contact-message" rows="4" placeholder="Mention if you want a custom diet plan or trial slot..."></textarea>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary btn-block" id="formSubmitBtn">Submit Enquiry</button>
+                                    <div id="formFeedback" class="form-feedback"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Admin passcode Login Prompt Modal -->
+    <div id="adminLoginModal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <h3>Admin Access</h3>
+            <p>Enter the security passcode to manage the website content.</p>
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <label for="admin-passcode">Security Passcode</label>
+                    <input type="password" id="admin-passcode" placeholder="Enter password" required>
+                </div>
+                <div class="form-actions-row">
+                    <button type="button" class="btn btn-outline btn-sm" id="closeLoginModalBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Unlock</button>
+                </div>
+                <div id="adminLoginFeedback" class="form-feedback"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Modal Panel -->
+    <div id="adminDashboardModal" class="modal-overlay" style="display: none;">
+        <div class="modal-card dashboard-card">
+            <div class="dashboard-header">
+                <h3>🛠️ Coach Admin Portal</h3>
+                <button class="btn-close-dashboard" id="closeDashboardBtn">&times;</button>
+            </div>
+            
+            <div class="dashboard-tabs">
+                <button class="tab-link active" data-tab="tab-feedbacks">Manage Reviews</button>
+                <button class="tab-link" data-tab="tab-photos">Add Photos</button>
+                <button class="tab-link" data-tab="tab-videos">Add Videos</button>
+            </div>
+
+            <!-- Tab Content: feedbacks queue -->
+            <div class="tab-panel active" id="tab-feedbacks">
+                <h4>Pending & Approved Reviews</h4>
+                <p class="panel-desc">Approve client reviews to display them on the home page testimonials slider.</p>
+                <div class="feedback-approval-list" id="adminFeedbackList">
+                    <!-- Dynamic List -->
+                </div>
+            </div>
+
+            <!-- Tab Content: add photos -->
+            <div class="tab-panel" id="tab-photos">
+                <h4>Upload Gym Gallery Image</h4>
+                <form id="adminPhotoForm">
+                    <div class="form-group">
+                        <label>Select Photo File</label>
+                        <input type="file" id="admin-photo-file" accept="image/*" required>
+                        <p class="file-help-text">Choose a JPG/PNG format fitness picture</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-photo-caption">Image Description / Caption</label>
+                        <input type="text" id="admin-photo-caption" placeholder="e.g. Morning Cardio Batch training" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">Add to Gallery</button>
+                    <div id="adminPhotoFeedback" class="form-feedback"></div>
+                </form>
+
+                <div class="admin-media-list-container" style="margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+                    <h5>Manage Existing Photos</h5>
+                    <div class="admin-media-list" id="adminPhotoList" style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px; max-height: 200px; overflow-y: auto;">
+                        <!-- Dynamic Photo List with Delete Buttons -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: add videos -->
+            <div class="tab-panel" id="tab-videos">
+                <h4>Upload Fitness Video Clip</h4>
+                <form id="adminVideoForm">
+                    <div class="form-group">
+                        <label for="admin-video-url">Video Link / YouTube URL</label>
+                        <input type="url" id="admin-video-url" placeholder="e.g., https://www.youtube.com/watch?v=..." required>
+                        <p class="file-help-text">Paste YouTube URL or any MP4 video URL (Google Drive, Dropbox, YouTube)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-video-title">Video Title / Client Result</label>
+                        <input type="text" id="admin-video-title" placeholder="e.g., Priya Singh Aerobic Training / Amit weightloss feedback" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">Add Highlight Video</button>
+                    <div id="adminVideoFeedback" class="form-feedback"></div>
+                </form>
+
+                <div class="admin-media-list-container" style="margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+                    <h5>Manage Existing Videos</h5>
+                    <div class="admin-media-list" id="adminVideoList" style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px; max-height: 200px; overflow-y: auto;">
+                        <!-- Dynamic Video List with Delete Buttons -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>DT Cardio & Fitness</h3>
+                    <p class="footer-motto">"If You Think Fitness is Costly, then Try Illness"</p>
+                    <p class="footer-about">Providing dedicated online & offline fitness and diet guidance since 2026.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#facilities">Facilities</a></li>
+                        <li><a href="#bmi-calculator">BMI Calculator</a></li>
+                        <li><a href="#testimonials">Success Stories</a></li>
+                        <li><a href="#give-feedback" class="special-footer-link">Client Feedback Form</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>📞 +91 95097 00562</p>
+                    <p>📧 anjalirajchawhan9467@gmail.com</p>
+                    <p>📍 COSMOS GREENS, Alwar Bypass Road, Bhiwadi, Rajasthan 301019</p>
+                    <p style="margin-top: 18px;">
+                        <button class="btn btn-outline btn-sm" id="adminPortalBtn" style="border-color: var(--white); color: var(--white);">🔑 Admin Portal</button>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-copy">
+                    <p>Copyright &copy; 2026 DT Cardio & Fitness. All Rights Reserved.</p>
+                </div>
+                <div class="footer-creator">
+                    <p>Designed & Maintained by <a href="https://dtcardiofitness.mybhiwadi.com/" target="_blank">Malhotra Tech Solutions</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Action -->
+    <a href="https://wa.me/919509700562?text=Hello%20DT%20Cardio%20%26%20Fitness!%20I%20am%20interested%20in%20joining%20a%20fitness%20batch." 
+       target="_blank" 
+       class="whatsapp-float" 
+       id="whatsappFloat"
+       aria-label="Contact us on WhatsApp">
+        <svg viewBox="0 0 448 512" width="28" height="28" fill="currentColor"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L3 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+        <span class="whatsapp-badge">Chat with Us</span>
+    </a>
+
+    <!-- Main JavaScript File -->
+    <script src="index.js"></script>
+</body>
+</html>
