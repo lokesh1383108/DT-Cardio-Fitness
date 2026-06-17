@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             batch: "Bhiwadi Offline Batch",
             result: "Lost 12kg",
             rating: 5,
-            quote: "DT Cardio has completely changed my perspective on fitness. Anjali Ma'am gives personal attention to every student. I lost 12 kgs in just 3 months with her offline batch and proper diet guidelines!",
+            quote: "DP Cardio has completely changed my perspective on fitness. xyz gives personal attention to every student. I lost 12 kgs in just 3 months with her offline batch and proper diet guidelines!",
             status: "approved"
         },
         {
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 3,
             name: "Priya Singh",
-            batch: "Cosmos Greens Resident",
+            batch: "Bhiwadi Resident",
             result: "Body Toning",
             rating: 5,
             quote: "Best decision of 2026. The separate batches for females give so much comfort and space. The body toning exercises combined with aerobics kept me excited every day. Superb coaching!",
@@ -34,10 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const defaultPhotos = [
-        { id: 101, url: "images/hero_fitness.png", caption: "Unisex Cardio Session" },
-        { id: 102, url: "images/owner_trainer.png", caption: "Coach Anjali Raj Chawhan" },
-        { id: 103, url: "images/cardio_class.png", caption: "Bhiwadi Studio Class" }
-    ];
+        { id: 101, url: "images/owner_trainer.png", caption: "Coach xyz", category: "workout" },
+       ];
 
     const defaultVideos = [
         {
@@ -51,6 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
             url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
             title: "Aerobics & Fat Loss Routine",
             desc: "Cardio session tailored for toning and fast weight loss."
+        },
+        {
+            id: 203,
+            url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            title: "Client Body Toning Workouts",
+            desc: "Dedicated definition and sculpting guidance."
         }
     ];
 
@@ -177,6 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let slideInterval;
 
     const renderTestimonials = () => {
+        if (!testimonialsSlider) return;
         const approvedFeedbacks = state.feedbacks.filter(f => f.status === 'approved');
         
         if (approvedFeedbacks.length === 0) {
@@ -254,26 +259,105 @@ document.addEventListener('DOMContentLoaded', () => {
         slideInterval = setInterval(nextSlide, 6000);
     };
 
-    // Render Gallery
-    const renderGallery = () => {
-        const galleryGrid = document.getElementById('dynamicGalleryGrid');
-        if (!galleryGrid) return;
+    /* ==========================================================================
+       Hero Slideshow (Dynamic arrows + dots controls)
+       ========================================================================== */
+    const heroSlideshow = document.getElementById('heroSlideshow');
+    const heroSliderPrev = document.getElementById('heroSliderPrev');
+    const heroSliderNext = document.getElementById('heroSliderNext');
+    const heroSliderDots = document.getElementById('heroSliderDots');
+    let currentHeroSlide = 0;
+    let heroInterval;
 
-        galleryGrid.innerHTML = state.photos.map(photo => `
-            <div class="gallery-card">
-                <img src="${photo.url}" alt="${photo.caption}" class="gallery-card-img" onerror="this.src='images/hero_fitness.png'">
-                <div class="gallery-card-caption">${photo.caption}</div>
+    const renderHeroSlideshow = () => {
+        if (!heroSlideshow) return;
+
+        if (state.photos.length === 0) {
+            heroSlideshow.innerHTML = `<div class="hero-slide active"><img src="images/hero_fitness.png" alt="Fitness Training Scene"></div>`;
+            heroSliderDots.innerHTML = '';
+            return;
+        }
+
+        heroSlideshow.innerHTML = state.photos.map((photo, idx) => `
+            <div class="hero-slide ${idx === 0 ? 'active' : ''}">
+                <img src="${photo.url}" alt="${photo.caption}" onerror="this.src='images/hero_fitness.png'">
             </div>
         `).join('');
+
+        // Render Dots
+        heroSliderDots.innerHTML = state.photos.map((_, idx) => `
+            <span class="dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></span>
+        `).join('');
+
+        initHeroSlideshow();
     };
 
-    // Render Videos
+    const initHeroSlideshow = () => {
+        clearInterval(heroInterval);
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('#heroSliderDots .dot');
+        if (slides.length === 0) return;
+
+        currentHeroSlide = 0;
+
+        const showHeroSlide = (index) => {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            currentHeroSlide = (index + slides.length) % slides.length;
+            slides[currentHeroSlide].classList.add('active');
+            if (dots[currentHeroSlide]) dots[currentHeroSlide].classList.add('active');
+        };
+
+        const nextHeroSlide = () => showHeroSlide(currentHeroSlide + 1);
+        const prevHeroSlide = () => showHeroSlide(currentHeroSlide - 1);
+
+        // Timer (cycle every 4 seconds)
+        heroInterval = setInterval(nextHeroSlide, 4000);
+
+        // Click actions
+        if (heroSliderNext && heroSliderPrev) {
+            heroSliderNext.onclick = () => {
+                clearInterval(heroInterval);
+                nextHeroSlide();
+                heroInterval = setInterval(nextHeroSlide, 4000);
+            };
+
+            heroSliderPrev.onclick = () => {
+                clearInterval(heroInterval);
+                prevHeroSlide();
+                heroInterval = setInterval(nextHeroSlide, 4000);
+            };
+        }
+
+        dots.forEach((dot, index) => {
+            dot.onclick = () => {
+                clearInterval(heroInterval);
+                showHeroSlide(index);
+                heroInterval = setInterval(nextHeroSlide, 4000);
+            };
+        });
+    };
+
+    /* ==========================================================================
+       Swipeable Video Slider Logic (Responsive Card Sliding)
+       ========================================================================== */
+    const videoGrid = document.getElementById('dynamicVideoGrid');
+    const videoSliderPrev = document.getElementById('videoSliderPrev');
+    const videoSliderNext = document.getElementById('videoSliderNext');
+    const videoSliderDots = document.getElementById('videoSliderDots');
+    let currentVideoIndex = 0;
+
     const renderVideos = () => {
-        const videoGrid = document.getElementById('dynamicVideoGrid');
         if (!videoGrid) return;
 
+        if (state.videos.length === 0) {
+            videoGrid.innerHTML = `<p style="padding: 20px; font-style: italic;">No highlights uploaded yet.</p>`;
+            if (videoSliderDots) videoSliderDots.innerHTML = '';
+            return;
+        }
+
         videoGrid.innerHTML = state.videos.map(video => {
-            // Check if embed url
             const isEmbed = video.url.includes('youtube.com/embed') || video.url.includes('player.vimeo.com');
             
             return `
@@ -287,52 +371,272 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="video-info">
                         <h4>${video.title}</h4>
-                        <p>${video.desc || 'Client transformation feedback workout session'}</p>
+                        <p>${video.desc || 'Uploaded Transformation Workout Highlight'}</p>
                     </div>
                 </div>
             `;
         }).join('');
+
+        initVideoSlider();
     };
 
-    /* ==========================================================================
-       Hero Slideshow (Auto-slide in seconds)
-       ========================================================================== */
-    const heroSlideshow = document.getElementById('heroSlideshow');
-    let currentHeroSlide = 0;
-    let heroInterval;
+    const initVideoSlider = () => {
+        if (!videoGrid || state.videos.length === 0) return;
+        currentVideoIndex = 0;
+        translateVideoGrid();
 
-    const renderHeroSlideshow = () => {
-        if (!heroSlideshow) return;
+        // Calculate slider dots count responsive to width
+        updateVideoDots();
 
-        if (state.photos.length === 0) {
-            heroSlideshow.innerHTML = `<div class="hero-slide active"><img src="images/hero_fitness.png" alt="Fitness Training Scene"></div>`;
+        window.addEventListener('resize', () => {
+            currentVideoIndex = 0;
+            translateVideoGrid();
+            updateVideoDots();
+        });
+
+        if (videoSliderNext && videoSliderPrev) {
+            videoSliderNext.onclick = () => {
+                const visibleCount = getVisibleVideoCount();
+                const maxIndex = Math.max(0, state.videos.length - visibleCount);
+                if (currentVideoIndex < maxIndex) {
+                    currentVideoIndex++;
+                    translateVideoGrid();
+                    updateVideoActiveDot();
+                } else {
+                    currentVideoIndex = 0; // Wrap around
+                    translateVideoGrid();
+                    updateVideoActiveDot();
+                }
+            };
+
+            videoSliderPrev.onclick = () => {
+                const visibleCount = getVisibleVideoCount();
+                const maxIndex = Math.max(0, state.videos.length - visibleCount);
+                if (currentVideoIndex > 0) {
+                    currentVideoIndex--;
+                    translateVideoGrid();
+                    updateVideoActiveDot();
+                } else {
+                    currentVideoIndex = maxIndex; // Wrap around to end
+                    translateVideoGrid();
+                    updateVideoActiveDot();
+                }
+            };
+        }
+    };
+
+    const getVisibleVideoCount = () => {
+        const width = window.innerWidth;
+        if (width > 992) return 3; // Desktop
+        if (width > 768) return 2; // Tablet
+        return 1; // Mobile
+    };
+
+    const translateVideoGrid = () => {
+        if (videoGrid.children.length === 0) return;
+        const visibleCount = getVisibleVideoCount();
+        const cardWidth = videoGrid.children[0].getBoundingClientRect().width;
+        // 24px is the gap in CSS (grid-gap / gap: 24px)
+        const gap = 24;
+        const translateOffset = currentVideoIndex * (cardWidth + gap);
+        videoGrid.style.transform = `translateX(-${translateOffset}px)`;
+    };
+
+    const updateVideoDots = () => {
+        if (!videoSliderDots) return;
+        const visibleCount = getVisibleVideoCount();
+        const totalDots = Math.max(1, state.videos.length - visibleCount + 1);
+
+        if (state.videos.length <= visibleCount) {
+            videoSliderDots.innerHTML = '';
             return;
         }
 
-        heroSlideshow.innerHTML = state.photos.map((photo, idx) => `
-            <div class="hero-slide ${idx === 0 ? 'active' : ''}">
-                <img src="${photo.url}" alt="${photo.caption}" onerror="this.src='images/hero_fitness.png'">
+        videoSliderDots.innerHTML = Array.from({ length: totalDots }).map((_, idx) => `
+            <span class="dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></span>
+        `).join('');
+
+        const dots = videoSliderDots.querySelectorAll('.dot');
+        dots.forEach(dot => {
+            dot.onclick = () => {
+                currentVideoIndex = parseInt(dot.dataset.index);
+                translateVideoGrid();
+                updateVideoActiveDot();
+            };
+        });
+    };
+
+    const updateVideoActiveDot = () => {
+        if (!videoSliderDots) return;
+        const dots = videoSliderDots.querySelectorAll('.dot');
+        dots.forEach(dot => dot.classList.remove('active'));
+        if (dots[currentVideoIndex]) {
+            dots[currentVideoIndex].classList.add('active');
+        }
+    };
+
+    /* ==========================================================================
+       Gallery Filters, Load More, and Fullscreen Lightbox Slider (Supports Swiping)
+       ========================================================================== */
+    const galleryGrid = document.getElementById('dynamicGalleryGrid');
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const loadMorePhotosBtn = document.getElementById('loadMorePhotosBtn');
+    
+    let activeFilter = 'all';
+    let visiblePhotosCount = 6; // Limit initial loading for performance
+    let filteredPhotos = []; // Keep track of current filter list
+
+    const renderGallery = () => {
+        if (!galleryGrid) return;
+
+        // Apply category filter tag
+        if (activeFilter === 'all') {
+            filteredPhotos = state.photos;
+        } else {
+            filteredPhotos = state.photos.filter(p => p.category === activeFilter);
+        }
+
+        if (filteredPhotos.length === 0) {
+            galleryGrid.innerHTML = `<p style="grid-column: span 3; font-style: italic; text-align: center; padding: 40px 0;">No photos uploaded in this category yet.</p>`;
+            if (loadMorePhotosBtn) loadMorePhotosBtn.style.display = 'none';
+            return;
+        }
+
+        // Apply load-more pagination slice
+        const visibleSlice = filteredPhotos.slice(0, visiblePhotosCount);
+
+        galleryGrid.innerHTML = visibleSlice.map(photo => `
+            <div class="gallery-card" data-id="${photo.id}">
+                <img src="${photo.url}" alt="${photo.caption}" class="gallery-card-img" onerror="this.src='images/hero_fitness.png'">
+                <div class="gallery-card-caption">${photo.caption}</div>
             </div>
         `).join('');
 
-        initHeroSlideshow();
+        // Toggle Load More button visibility
+        if (loadMorePhotosBtn) {
+            if (filteredPhotos.length > visiblePhotosCount) {
+                loadMorePhotosBtn.style.display = 'inline-block';
+            } else {
+                loadMorePhotosBtn.style.display = 'none';
+            }
+        }
+
+        // Attach Lightbox click triggers
+        const cards = galleryGrid.querySelectorAll('.gallery-card');
+        cards.forEach(card => {
+            card.onclick = () => {
+                const id = parseInt(card.dataset.id);
+                openLightbox(id);
+            };
+        });
     };
 
-    const initHeroSlideshow = () => {
-        clearInterval(heroInterval);
-        const slides = document.querySelectorAll('.hero-slide');
-        if (slides.length <= 1) return;
+    // Filter tab clicks
+    filterTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            filterTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            activeFilter = tab.dataset.filter;
+            visiblePhotosCount = 6; // Reset pagination page count
+            renderGallery();
+        });
+    });
 
-        currentHeroSlide = 0;
-
-        const nextHeroSlide = () => {
-            slides[currentHeroSlide].classList.remove('active');
-            currentHeroSlide = (currentHeroSlide + 1) % slides.length;
-            slides[currentHeroSlide].classList.add('active');
+    // Load more pagination click
+    if (loadMorePhotosBtn) {
+        loadMorePhotosBtn.onclick = () => {
+            visiblePhotosCount += 6; // Load 6 more items
+            renderGallery();
         };
+    }
 
-        // Automatic side-scrolling transition every 4 seconds
-        heroInterval = setInterval(nextHeroSlide, 4000);
+    /* Fullscreen Lightbox Slider Engine */
+    const lightboxModal = document.getElementById('lightboxModal');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    
+    const closeLightboxBtn = document.getElementById('closeLightboxBtn');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+
+    let currentLightboxIndex = 0;
+
+    const openLightbox = (photoId) => {
+        if (!lightboxModal) return;
+        
+        currentLightboxIndex = filteredPhotos.findIndex(p => p.id === photoId);
+        if (currentLightboxIndex === -1) return;
+
+        updateLightboxContent();
+        lightboxModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Stop background scrolling
+    };
+
+    const updateLightboxContent = () => {
+        const activePhoto = filteredPhotos[currentLightboxIndex];
+        if (!activePhoto) return;
+
+        lightboxImage.src = activePhoto.url;
+        lightboxCaption.textContent = activePhoto.caption;
+        lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${filteredPhotos.length}`;
+    };
+
+    const nextLightboxImage = () => {
+        currentLightboxIndex = (currentLightboxIndex + 1) % filteredPhotos.length;
+        updateLightboxContent();
+    };
+
+    const prevLightboxImage = () => {
+        currentLightboxIndex = (currentLightboxIndex - 1 + filteredPhotos.length) % filteredPhotos.length;
+        updateLightboxContent();
+    };
+
+    const closeLightbox = () => {
+        if (lightboxModal) {
+            lightboxModal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+    };
+
+    // Click events
+    if (closeLightboxBtn) closeLightboxBtn.onclick = closeLightbox;
+    if (lightboxNext) lightboxNext.onclick = nextLightboxImage;
+    if (lightboxPrev) lightboxPrev.onclick = prevLightboxImage;
+
+    // Keyboard events navigation
+    window.addEventListener('keydown', (e) => {
+        if (lightboxModal && lightboxModal.style.display === 'flex') {
+            if (e.key === 'ArrowRight') nextLightboxImage();
+            if (e.key === 'ArrowLeft') prevLightboxImage();
+            if (e.key === 'Escape') closeLightbox();
+        }
+    });
+
+    // Swipe gestures support on mobile devices
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    if (lightboxModal) {
+        lightboxModal.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        lightboxModal.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleLightboxSwipeGesture();
+        }, { passive: true });
+    }
+
+    const handleLightboxSwipeGesture = () => {
+        const swipeThreshold = 50; // pixels
+        if (touchEndX < touchStartX - swipeThreshold) {
+            nextLightboxImage(); // Swiped Left -> show next
+        }
+        if (touchEndX > touchStartX + swipeThreshold) {
+            prevLightboxImage(); // Swiped Right -> show prev
+        }
     };
 
     /* ==========================================================================
@@ -388,8 +692,8 @@ document.addEventListener('DOMContentLoaded', () => {
             bmiScore.style.color = color;
             bmiSuggestion.textContent = advice;
 
-            const customMessage = encodeURIComponent(`Hello Coach Anjali, I calculated my BMI as ${bmi} (${classification}) for the ${gender} Batch. I'd like to book a free trial session.`);
-            bmiCTA.setAttribute('href', `https://wa.me/919509700562?text=${customMessage}`);
+            const customMessage = encodeURIComponent(`Hello Coach xyz, I calculated my BMI as ${bmi} (${classification}) for the ${gender} Batch. I'd like to book a free trial session.`);
+            bmiCTA.setAttribute('href', `https://wa.me/918824198663?text=${customMessage}`);
             bmiCTA.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         });
     }
@@ -425,9 +729,9 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.textContent = 'Processing request...';
 
             setTimeout(() => {
-                showFeedback(`Thank you, ${name}! Your enquiry has been received. Redirecting to Coach Anjali...`, 'success');
+                showFeedback(`Thank you, ${name}! Your enquiry has been received. Redirecting to Coach xyz...`, 'success');
 
-                let waText = `Hello DT Cardio & Fitness!\n\n`;
+                let waText = `Hello DP Cardio & Fitness!\n\n`;
                 waText += `My name is *${name}*.\n`;
                 waText += `I want to join the *${batch}* (${mode}).\n`;
                 waText += `My Fitness Goal is: *${goal}*.\n`;
@@ -436,7 +740,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     waText += `Note: _${message}_\n`;
                 }
                 
-                const waUrl = `https://wa.me/919509700562?text=${encodeURIComponent(waText)}`;
+                const waUrl = `https://wa.me/918824198663?text=${encodeURIComponent(waText)}`;
 
                 setTimeout(() => {
                     window.open(waUrl, '_blank');
@@ -491,7 +795,7 @@ document.addEventListener('DOMContentLoaded', () => {
             state.feedbacks.push(newReview);
             saveState();
 
-            fbFormFeedback.textContent = "Thank you! Your transformation story has been submitted and is pending approval from Coach Anjali Raj Chawhan.";
+            fbFormFeedback.textContent = "Thank you! Your transformation story has been submitted and is pending approval from Coach xyz.";
             fbFormFeedback.className = "form-feedback success";
             fbFormFeedback.style.display = "block";
 
@@ -540,7 +844,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const passcode = document.getElementById('admin-passcode').value;
 
             // Security check passcode
-            if (passcode === 'dtfitness2026') {
+            if (passcode === 'dpfitness2026') {
                 adminLoginFeedback.textContent = "Access Granted!";
                 adminLoginFeedback.className = "form-feedback success";
                 adminLoginFeedback.style.display = "block";
@@ -666,7 +970,7 @@ document.addEventListener('DOMContentLoaded', () => {
         adminPhotoList.innerHTML = state.photos.map(photo => `
             <div class="admin-media-item">
                 <img src="${photo.url}" alt="${photo.caption}" class="admin-media-thumb" onerror="this.src='images/hero_fitness.png'">
-                <div class="admin-media-info">${photo.caption}</div>
+                <div class="admin-media-info">${photo.caption} <span style="font-size:0.75rem; color:var(--primary);">(${photo.category || 'workout'})</span></div>
                 <div class="admin-media-actions">
                     <button class="btn btn-outline btn-sm delete-photo-btn" data-id="${photo.id}" style="color: var(--danger); border-color: var(--danger);">Delete</button>
                 </div>
@@ -734,6 +1038,7 @@ document.addEventListener('DOMContentLoaded', () => {
         adminPhotoForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const fileInput = document.getElementById('admin-photo-file');
+            const category = document.getElementById('admin-photo-category').value;
             const caption = document.getElementById('admin-photo-caption').value.trim();
 
             if (fileInput.files.length === 0 || !caption) return;
@@ -746,7 +1051,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const newPhoto = {
                     id: Date.now(),
                     url: base64Url,
-                    caption: caption
+                    caption: caption,
+                    category: category
                 };
 
                 state.photos.push(newPhoto);

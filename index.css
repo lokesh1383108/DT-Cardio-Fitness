@@ -287,6 +287,25 @@ img {
     width: 100%;
 }
 
+.instagram-nav-link {
+    color: var(--dark-muted);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+    transition: var(--transition-fast);
+    margin-right: -8px;
+}
+
+.instagram-nav-link:hover {
+    color: var(--primary);
+    background-color: var(--primary-light);
+    border-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
 .nav-toggle {
     display: none;
     flex-direction: column;
@@ -308,7 +327,7 @@ img {
 }
 
 /* ==========================================================================
-   Hero Section
+   Hero Section & Slider Controls
    ========================================================================== */
 .hero-section {
     padding-top: calc(var(--header-height) + 40px);
@@ -405,6 +424,7 @@ img {
     position: relative;
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .hero-image-wrapper {
@@ -443,6 +463,60 @@ img {
 
 .hero-slide:hover img {
     transform: scale(1.05);
+}
+
+/* Hero Slider manual navigation styling */
+.hero-slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.hero-slider-btn:hover {
+    background-color: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+}
+
+.hero-slider-btn.prev { left: 16px; }
+.hero-slider-btn.next { right: 16px; }
+
+.hero-slider-dots {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 20;
+}
+
+.hero-slider-dots .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background-color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.hero-slider-dots .dot.active {
+    background-color: var(--primary);
+    width: 20px;
 }
 
 .glass-tag {
@@ -1082,14 +1156,35 @@ img {
     width: 24px;
 }
 
-/* Video Feedbacks Grid */
+/* ==========================================================================
+   Swipeable Video Slider Section
+   ========================================================================== */
+.video-slider-outer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    max-width: 100%;
+}
+
+.video-slider-wrapper {
+    overflow: hidden;
+    width: 100%;
+    border-radius: var(--radius-md);
+    padding: 10px 0;
+}
+
 .video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
+    display: flex;
+    gap: 24px;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    width: 100%;
+    margin-top: 0;
 }
 
 .video-card {
+    flex: 0 0 calc(33.333% - 16px);
+    min-width: 280px;
     background-color: var(--white);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
@@ -1167,16 +1262,62 @@ img {
 }
 
 .video-info h4 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     margin-bottom: 6px;
 }
 
 .video-info p {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--dark-muted);
 }
 
-/* Community Gallery Feature */
+.video-slider-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+    background-color: var(--white);
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-fast);
+    z-index: 20;
+    flex-shrink: 0;
+}
+
+.video-slider-btn:hover {
+    background-color: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+}
+
+.video-slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.video-slider-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-full);
+    background-color: var(--border-color);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.video-slider-dots .dot.active {
+    background-color: var(--primary);
+    width: 24px;
+}
+
+/* ==========================================================================
+   Community Gallery Filters & Load More Layout
+   ========================================================================== */
 .gallery-showcase {
     display: grid;
     grid-template-columns: 1fr;
@@ -1200,10 +1341,60 @@ img {
 
 .gallery-text p {
     font-size: 1.05rem;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
     max-width: 650px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Filter Tab buttons */
+.gallery-filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+}
+
+.filter-tab {
+    padding: 10px 24px;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--dark-muted);
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.filter-tab:hover, .filter-tab.active {
+    background-color: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-glow);
+}
+
+.instagram-badge-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 10px 20px;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    border-radius: var(--radius-full);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: var(--transition-fast);
+}
+
+.instagram-badge-inline:hover {
+    background-color: var(--primary);
+    color: var(--white);
+    transform: translateY(-2px);
 }
 
 .gallery-images-container {
@@ -1224,6 +1415,8 @@ img {
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--border-color);
     background-color: var(--white);
+    cursor: zoom-in;
+    animation: fadeIn 0.4s ease-out;
 }
 
 .gallery-card-img {
@@ -1255,6 +1448,98 @@ img {
 .gallery-card:hover .gallery-card-caption {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ==========================================================================
+   Premium Fullscreen Lightbox Overlay Slider
+   ========================================================================== */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.96);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    animation: fadeIn var(--transition-fast);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: transparent;
+    border: none;
+    font-size: 3rem;
+    color: var(--white);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    line-height: 1;
+}
+
+.lightbox-close:hover {
+    color: var(--primary);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 3.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 16px;
+    z-index: 3010;
+    transition: var(--transition-fast);
+    line-height: 1;
+}
+
+.lightbox-nav:hover {
+    color: var(--primary);
+}
+
+.lightbox-nav.prev { left: 24px; }
+.lightbox-nav.next { right: 24px; }
+
+.lightbox-content {
+    max-width: 80%;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    animation: scaleIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#lightboxImage {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    border: 3px solid rgba(255, 255, 255, 0.05);
+}
+
+.lightbox-caption {
+    color: var(--white);
+    margin-top: 16px;
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.lightbox-counter {
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
 }
 
 /* ==========================================================================
@@ -1536,6 +1821,48 @@ img {
 .feedback-actions .btn {
     padding: 8px 12px;
     font-size: 0.8rem;
+}
+
+/* Admin Media Lists */
+.admin-media-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--light-bg);
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    gap: 16px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.admin-media-thumb {
+    width: 50px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+    background-color: #000;
+    flex-shrink: 0;
+}
+
+.admin-media-info {
+    flex-grow: 1;
+    font-size: 0.9rem;
+    color: var(--dark);
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.admin-media-actions {
+    flex-shrink: 0;
+}
+
+.admin-media-actions .btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
 }
 
 /* ==========================================================================
@@ -2002,48 +2329,4 @@ a.info-block-item:hover {
 @keyframes scaleIn {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
-}
-
-/* ==========================================================================
-   Admin Media Manager List Layouts
-   ========================================================================== */
-.admin-media-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--light-bg);
-    padding: 12px 16px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    gap: 16px;
-    animation: fadeIn 0.3s ease-out;
-}
-
-.admin-media-thumb {
-    width: 50px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 4px;
-    background-color: #000;
-    flex-shrink: 0;
-}
-
-.admin-media-info {
-    flex-grow: 1;
-    font-size: 0.9rem;
-    color: var(--dark);
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.admin-media-actions {
-    flex-shrink: 0;
-}
-
-.admin-media-actions .btn {
-    padding: 6px 12px;
-    font-size: 0.75rem;
-    font-weight: 700;
 }
